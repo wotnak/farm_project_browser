@@ -1,0 +1,6 @@
+name: farmOS Project Browser
+type: module
+description: farmOS addon modules in Project Browser.
+core_version_requirement: ^9 || ^10
+dependencies:
+  - project_browser:project_browser

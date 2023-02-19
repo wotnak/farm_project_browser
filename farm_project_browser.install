@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * @file
+ * Enables this plugin source on install.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function farm_project_browser_install() {
+  $configFactory = \Drupal::configFactory();
+  $current_source_plugin = $configFactory->getEditable('project_browser.admin_settings')
+    ->get('enabled_sources');
+  $current_source_plugin[] = 'project_browser_source_farmos';
+  $configFactory->getEditable('project_browser.admin_settings')
+    ->set('enabled_sources', $current_source_plugin)
+    ->save(TRUE);
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function farm_project_browser_uninstall() {
+  $admin_settings = \Drupal::configFactory()->getEditable('project_browser.admin_settings');
+  $enabled_sources = $admin_settings->get('enabled_sources');
+  if (($key = array_search('project_browser_source_farmos', $enabled_sources)) !== FALSE) {
+    unset($enabled_sources[$key]);
+    $admin_settings
+      ->set('enabled_sources', array_values($enabled_sources) ?: ['drupalorg_mockapi'])
+      ->save(TRUE);
+  }
+}

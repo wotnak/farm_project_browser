@@ -1,0 +1,10 @@
+{
+  "name": "drupal/farm_project_browser",
+  "description": "farmOS addon modules in Project Browser.",
+  "type": "drupal-module",
+  "homepage": "https://www.drupal.org/project/farm_project_browser",
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "drupal/project_browser": "^1.0"
+  }
+}
